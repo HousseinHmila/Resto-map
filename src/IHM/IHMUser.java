@@ -38,9 +38,6 @@ public class IHMUser implements EventHandler<ActionEvent>{
 	Stage stageUser;
     RestaurantBD resto0=new RestaurantBD();
 	 ObservableList<Restaurant> resto = resto0.getResto();
-
-
-
 	    TableView table = new TableView();
 	   TableColumn firstNameCol = new TableColumn("Restaurent Name");
 	   TableColumn lastNameCol = new TableColumn("Avis");
@@ -50,17 +47,12 @@ public class IHMUser implements EventHandler<ActionEvent>{
 		TextField name,adresse;
 		PasswordField rpPassword;
 		Button btnRegister;
-
-
-
 	   public ArrayList<Restaurant> getResto(String lon, String lat,String max_dis) {
 	       ArrayList<Restaurant> near_resto=new ArrayList<>();
 	       for(Restaurant value : resto) {
 	           if (value.CalculationByDistance(Double.parseDouble(lat),Double.parseDouble(lon),value.getLatitude(),value.getLongitude() ) <= Double.parseDouble(max_dis)){
 	               near_resto.add(value);
-
 	           }
-
 	       }
 	       return near_resto;
 	   }
@@ -136,17 +128,12 @@ public class IHMUser implements EventHandler<ActionEvent>{
            a1.setTitle("fill the form");
            Label hb5=new Label("");
            btSend.setOnAction(e -> {
-
                String[] parts1=lon_name.getText().split("[.]");
                String[] parts2=lat_name.getText().split("[.]");
                if(!klm.isSelected() && !avis.isSelected() ){
-
-
                    a1.setHeaderText("You should choose the type of sort!");
                    a1.showAndWait();
-
                }
-
                else if( dis_val.getText().length()==0 || lon_name.getText().length()==0 || lat_name.getText().length()==0){
                    a1.setHeaderText("You should fill all the form!");
                    a1.showAndWait();
@@ -163,13 +150,10 @@ public class IHMUser implements EventHandler<ActionEvent>{
                    table.getItems().clear();
                    engine.load("https://www.google.tn/maps/@"+lat_name.getText()+","+lon_name.getText()+",15z");
                    super_resto.set(getResto(lon_name.getText(), lat_name.getText(), dis_val.getText()));
-
                    for (Restaurant a : super_resto.get()) {
                       // hb5.setText("Resto N1 : " + a.getNom() + " Avis : " + a.getAvis() + " , " + a.CalculationByDistance(Double.parseDouble(lat_name.getText()), Double.parseDouble(lon_name.getText()), a.getLatitude(), a.getLongitude()) + " km far from you ");
                        a.setDistance(a.CalculationByDistance(Double.parseDouble(lat_name.getText()), Double.parseDouble(lon_name.getText()), a.getLatitude(), a.getLongitude()));
-
                    }
-
                    firstNameCol.setCellValueFactory(
                            new PropertyValueFactory<>("Nom"));
 
@@ -197,7 +181,6 @@ public class IHMUser implements EventHandler<ActionEvent>{
                        table.sort();
                        avis.setSelected(false);
                    }
-
                }
            });
            // HTMLIFrameElement
@@ -217,37 +200,26 @@ public class IHMUser implements EventHandler<ActionEvent>{
                });
                return row ;
            });
-
-
-
            VBox gauche=new VBox(20);
            gauche.getChildren().addAll(form,table);
            gauche.setPadding(new Insets(35,10,20,10));
            root.getChildren().addAll(gauche,myweb);
-
-
         Image img = new Image("C:/Users/Asus/Desktop/ppt/sample/src/img/roadmap.jpg");
         BackgroundImage bImg = new BackgroundImage(img,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
-                new BackgroundSize(1000,800,false,false,false,false));
+                new BackgroundSize(1000,600,false,false,false,false));
         Background bGround = new Background(bImg);
         root.setBackground(bGround);
-
-
 		// params de la fenete
 		Scene sceneUser = new Scene(root,1000,600);
 		stageUser.setScene(sceneUser);
 		stageUser.show();
-		
-		
 	}
-
 	@Override
 	public void handle(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

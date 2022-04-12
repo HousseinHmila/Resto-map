@@ -92,7 +92,7 @@ public class Main  extends Application implements EventHandler<ActionEvent> {
 					BackgroundRepeat.NO_REPEAT,
 					BackgroundRepeat.NO_REPEAT,
 					BackgroundPosition.CENTER,
-					new BackgroundSize(1000,800,false,false,false,false));
+					new BackgroundSize(1000,600,false,false,false,false));
 			Background bGround = new Background(bImg);
 			root.setBackground(bGround);
 			

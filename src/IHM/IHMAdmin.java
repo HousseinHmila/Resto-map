@@ -69,9 +69,10 @@ public class IHMAdmin implements EventHandler<ActionEvent> {
 		// Trier selon la colonne moyenne
 		RestaurantBD resto=new RestaurantBD();
 		table.setEditable(true);
-		for (Restaurant emp : resto.getResto()){
-			table.getItems().add(emp);
-		}
+		//for (Restaurant emp : resto.getResto()){
+			//table.getItems().add(emp);
+		//}
+		dataList=resto.getResto();
 //
 		// Afficher les lignes de donn?es
 
@@ -156,7 +157,7 @@ public class IHMAdmin implements EventHandler<ActionEvent> {
 			r.delete(pr.getId());
 			table.setItems(r.getResto());
 
-			// table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
+
 		});
 
 
@@ -169,7 +170,7 @@ public class IHMAdmin implements EventHandler<ActionEvent> {
 				BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.CENTER,
-				new BackgroundSize(1000,800,false,false,false,false));
+				new BackgroundSize(1000,600,false,false,false,false));
 		Background bGround = new Background(bImg);
 		root.setBackground(bGround);
 		root.getChildren().addAll(tAdmin,Rech,table,Sort);
